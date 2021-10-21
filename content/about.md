@@ -19,7 +19,6 @@ I am a Senior AI Engineer @ AI Singapore. My responsibilities are:
 * Talent Development under the AIAP and AIDP programs
 * Technical Writing for Knowledge Management
 
-
 Some of the 100E Projects I've been involved in:
 
 Project  | Domain | Model Types
