@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-I've started a new job at [AI Singapore](www.aisingapore.org). The nature of the job is in a way that I have to mentor people and guide them to be better AI Engineers.
+I've started a new job at [AI Singapore](https://www.aisingapore.org). The nature of the job is in a way that I have to mentor people and guide them to be better AI Engineers.
 
 That's why I think my blog posts will be more relevant and useful.
 
