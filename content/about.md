@@ -4,24 +4,30 @@ layout: "About"
 summary: "About Page"
 ---
 
+My name is Siavash (See-ya-vash) Sakhavi. Nice to meet you!
+
+I am Iranian, Married, Have one child, and live in Singapore.
 
 ## Work Background
 
 ### AI Singapore (2020-Present)
-
-My name is Siavash (See-ya-vash) Sakhavi. Nice to meet you!
 
 I am a Senior AI Engineer @ AI Singapore. My responsibilities are:
 
 * Leading and Mentoring AIAP apprentices during 100E projects.
 * Consulting and guiding the Pre-sales team for 100E project scoping
 * Talent Development under the AIAP and AIDP programs
+* Technical Writing for Knowledge Management
+
 
 Some of the 100E Projects I've been involved in:
 
-* Detecting Nautical Objects from on-board cameras using RCNN-based Models (CV)
-* Generating Narratives from News and Reports using Transformer-Based Models (NLP)
-* Generating HD Maps from PointCloud+RGB data (CV)
+Project  | Domain | Model Types
+---------|---------- | ----------
+ Detecting Nautical Objects from on-board cameras  | CV | RCNN, YOLO
+ Generating Narratives from News and Reports  | NLP | Transformers
+ Creating HD Maps from LIDAR Point-Cloud and RGB Images  | CV | Similarity-Based
+ Fault Detection and Prediction in IoT Sensor Data | Signal | Signal Modelling, CNN
 
 ### KroniKare (2017-2020)
 
