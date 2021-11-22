@@ -70,7 +70,7 @@ _(Note: This list is going to grow.)_
 4. Functional Thinking/Programming
 5. Machine Learning Code Testing/Validation
 
-### Mentorship
+### Mentorship Practices
 
 1. Continuous Learning of Agile Development Practices
 
