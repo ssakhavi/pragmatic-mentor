@@ -53,26 +53,31 @@ I need to help the apprentices understand what details I've considered when endi
 The following are just a list of things that I've decided to consider for the new project.
 Although I've adopted the practices in my previous projects, but I've come to realize that some of them need more attention this time round.
 
-
 _(Note: This list is going to grow.)_
 
 ### Management Practices
 
 1. Frequent 1:1s
-2. Meeting Note-Taking (Mainly Sprint Reviews)
-3. Frequent meetings with sponsors/clients for clarifying design decisions
+1. Meeting Note-Taking (Mainly Sprint Reviews)
+1. Frequent meetings with sponsors/clients for clarifying design decisions
+1. Technical Sessions
+1. Stand-ups
+1. Motivation
 
 ### Software Development Practices
 
 1. Code Reviews
-2. Coding Style Enforcement
-3. Design Sessions
-4. Functional Thinking/Programming
-5. Machine Learning Code Testing/Validation
+1. Coding Style
+1. Pre-commit Hooks
+1. Document-Driven Design
+1. Design/Technical Sessions
+1. Functional Thinking/Programming
+1. Machine Learning Code Testing/Validation
+1. Error Analysis and Visualization
+1. Automated Tests
 
 ### Mentorship Practices
 
 1. Continuous Learning of Agile Development Practices
-
 
 I will be writing more about each of the items above and link the related posts.
