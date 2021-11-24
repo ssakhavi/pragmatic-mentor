@@ -66,7 +66,7 @@ _(Note: This list is going to grow.)_
 
 ### Software Development Practices
 
-1. Code Reviews
+1. [Code Reviews](../code-reviews)
 1. Coding Style
 1. Pre-commit Hooks
 1. Document-Driven Design
