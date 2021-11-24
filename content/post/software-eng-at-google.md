@@ -3,6 +3,7 @@ title: "Found It!: Software Engineering at Google"
 date: 2021-11-24T16:03:28+08:00
 showTOC: false
 draft: false
+tags: ["Software Engineering","Book"]
 ---
 
 In my last post, I was shared what my concerns were regarding software development and
