@@ -55,7 +55,7 @@ Although I've adopted the practices in my previous projects, but I've come to re
 
 _(Note: This list is going to grow.)_
 
-### Management Practices
+### Management Processes
 
 1. Frequent 1:1s
 1. Meeting Note-Taking (Mainly Sprint Reviews)
@@ -64,19 +64,22 @@ _(Note: This list is going to grow.)_
 1. Stand-ups
 1. Motivation
 
-### Software Development Practices
+### Software Development Processes
 
-1. [Code Reviews](../code-reviews)
+1. Code Reviews
+1. Pair Programming
+1. Branching Strategies
 1. Coding Style
 1. Pre-commit Hooks
 1. Document-Driven Design
 1. Design/Technical Sessions
 1. Functional Thinking/Programming
 1. Machine Learning Code Testing/Validation
-1. Error Analysis and Visualization
+1. Error Analysis
+1. Error Visualization
 1. Automated Tests
 
-### Mentorship Practices
+### Mentorship Processes
 
 1. Continuous Learning of Agile Development Practices
 
