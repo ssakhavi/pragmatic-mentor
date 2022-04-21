@@ -6,18 +6,27 @@ summary: "About Page"
 
 My name is Siavash (See-ya-vash) Sakhavi. Nice to meet you!
 
-I am Iranian, Married, Have one child, and live in Singapore.
+I am Iranian, Married, Have two children, and live in Singapore.
+
+## How would I describe myself?
+
+**I'm a resourceful person** due to reading and digesting of topic spanning from Software Engineering, to Machine Learning, to Project Management.
+
+**I always like a new challenge** and constantly try to learn and implement new technologies. For example, I'm interested in Functional Programming and Declerative Programming and how machine learning code can borrow the concepts.
+
+**I question concepts** and ways things are implemented and try to find better ways for them to work in the situation I have.
 
 ## Work Background
 
 ### AI Singapore (2020-Present)
 
-I am a Senior AI Engineer @ AI Singapore. My responsibilities are:
+I am a Senior AI Engineer @ AI Singapore and Assistant Head for the 100E Program. My responsibilities are:
 
 * Leading and Mentoring AIAP apprentices during 100E projects.
 * Consulting and guiding the Pre-sales team for 100E project scoping
 * Talent Development under the AIAP and AIDP programs
 * Technical Writing for Knowledge Management
+* Onboarding new engineers on the 100E team
 
 Some of the 100E Projects I've been involved in:
 
@@ -27,6 +36,7 @@ Project  | Domain | Model Types
  Generating Narratives from News and Reports  | NLP | Transformers
  Creating HD Maps from LIDAR Point-Cloud and RGB Images  | CV | Similarity-Based
  Fault Detection and Prediction in IoT Sensor Data | Signal | Signal Modelling, CNN
+ Open-set Audio Classification on Edge Devices | Audio,CV | CNN
 
 ### KroniKare (2017-2020)
 
@@ -36,11 +46,12 @@ I was also Product Manager and Developer for the KroniKare Data Collection and A
 
 Skills and Achievements:
 
-* Mentored apprentices under the AISG apprenticeship program
+* Mentored apprentices under the AISG apprenticeship program (AIAP)
 * Supervised students from Republic Polytechnic (RP) under there specialist diploma program
 * Successfully completed POC trials at multiple healthcare institutes
 * Actively involved as a product manager in the software project development.
 * Trained hundreds of nurses for the use of the KroniKare wound scanner application
+* Help with the implementation of ISO 13485 and IEC 62304.
 
 ## Acedemic Background
 

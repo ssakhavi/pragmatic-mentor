@@ -7,7 +7,7 @@ disqusShortname: siavashsakhavi
 
 menu:
   main:
-    - name: About
+    - name: About Me
       url: about
       weight: 5
     - name: Search
@@ -20,8 +20,6 @@ menu:
 socialIcons:
   - name: github
     url: "https://github.com/adityatelange/hugo-PaperMod"
-  - name: KoFi
-    url: "https://ko-fi.com/adityatelange"
   - name: RsS
     url: "index.xml"
 
