@@ -2,6 +2,7 @@
 title: "Information Proc Org Rec"
 date: 2022-11-17T17:11:30+08:00
 draft: false
+tags: ["Knowledge Management","PKM"]
 ---
 
 # Information-Processing, Organization & Retrieval
