@@ -1,11 +1,9 @@
 ---
-title: "Information Proc Org Rec"
+title: "Information- Processing, Organization and Retrieval"
 date: 2022-11-17T17:11:30+08:00
 draft: false
 tags: ["Knowledge Management","PKM"]
 ---
-
-# Information-Processing, Organization & Retrieval
 
 *What do you store and how do you store it so later you can retrieve it ?*
 
@@ -52,7 +50,7 @@ After we've processed our raw data,  and we've managed to extract information or
 - Should we be flat and just use tags? Should our tags be limited (resembling folders), multi-dimensional?
 In any of the above methods, how do we make sure that our note goes to the "*right*" place? an by "*right*" we mean in a way that we can retrieve it without guessing. 
 
-## Direction
+## Series Writing Direction
 I'm planning on writing a series of articles on the topics of information processing, information organization and information retrieval. These articles are inspired by the work of smart people and building on their shoulders. 
 
 The main 3 articles will be:
