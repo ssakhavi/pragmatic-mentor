@@ -66,10 +66,10 @@ Hopefully, I've shared something useful with you in this article and made you th
 Siavash
 
 {{< mermaid >}}
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
 {{< /mermaid >}}
 
