@@ -2,7 +2,7 @@
 title: "Information- Processing, Organization and Retrieval"
 date: 2022-11-17T17:11:30+08:00
 draft: false
-tags: ["Knowledge Management","PKM"]
+tags: ["Knowledge Management"]
 categories: ["PKM"]
 ---
 
