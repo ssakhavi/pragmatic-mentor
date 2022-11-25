@@ -68,3 +68,11 @@ The main 3 articles will be:
 Hopefully, I've shared something useful with you in this article and made you think or maybe, realize that you're in a better place than me.  
 
 Siavash
+
+{{< mermaid >}}
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+{{< /mermaid >}}

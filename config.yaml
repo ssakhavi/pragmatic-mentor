@@ -2,7 +2,7 @@ baseURL: https://blog.siavashsakhavi.com
 disablePathToLower: true
 languageCode: en-us
 title: A Journey into Pragmatism
-theme: "PaperMod"
+theme: "LoveIt"
 disqusShortname: siavashsakhavi
 
 menu:
