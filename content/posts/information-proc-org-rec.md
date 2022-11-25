@@ -3,6 +3,7 @@ title: "Information- Processing, Organization and Retrieval"
 date: 2022-11-17T17:11:30+08:00
 draft: false
 tags: ["Knowledge Management","PKM"]
+categories: ["PKM"]
 ---
 
 *What do you store and how do you store it so later you can retrieve it ?*
@@ -70,9 +71,9 @@ Hopefully, I've shared something useful with you in this article and made you th
 Siavash
 
 {{< mermaid >}}
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
 {{< /mermaid >}}
