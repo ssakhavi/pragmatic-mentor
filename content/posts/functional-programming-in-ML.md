@@ -63,7 +63,8 @@ x = torch.randn(100, 10)
 y_pred = model(x)  
 # Calculate the loss 
 loss = torch.nn.functional.mse_loss(y_pred, y)  
-# Backpropagate the loss to calculate the gradients loss.backward()  
+# Backpropagate the loss to calculate the gradients 
+loss.backward()  
 # Update the model parameters 
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01) 
 optimizer.step()
