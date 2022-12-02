@@ -1,7 +1,7 @@
 ---
 title: "Functional Frameworks in Machine Learning"
 date: 2022-12-02T10:50:57+08:00
-draft: true
+draft: false
 
 tags: ["Functorch","JAX","ChatGPT", "OpenAI"]
 categories: ["Machine Learning"]
