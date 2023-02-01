@@ -583,7 +583,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         reactionsEnabled = "1"
         emitMetadata = "0"
         inputPosition = "bottom"
-        lazyLoading = false
+        lazyLoading = true
         lightTheme = "light"
         darkTheme = "dark"
     # Third-party library config

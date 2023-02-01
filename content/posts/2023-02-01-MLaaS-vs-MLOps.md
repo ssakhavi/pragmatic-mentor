@@ -27,8 +27,8 @@ linkToMarkdown: true
 rssFullText: false
 
 toc:
-  enable: true
-  auto: true
+  enable: false
+  auto: false
 code:
   copy: true
   maxShownLines: 50
