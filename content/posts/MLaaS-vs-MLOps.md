@@ -60,7 +60,8 @@ seo:
 ---
 
 I watched this interesting video regarding the differences of MLOps (e.g. Train, Serve, Monitor your own model) vs ML-as-a-Service (e.g. Foundation Models).
-[MLOps vs ML-As-Service // Jill Chase and Manmeet Gujral // MLOps Podcast #143 clip - YouTube](https://www.youtube.com/watch?v=AK1jWpLm2Ao)
+
+[MLOps vs ML-As-Service // Jill Chase and Manmeet Gujral](https://www.youtube.com/watch?v=AK1jWpLm2Ao)
 
 These are some interesting learning points:
 
