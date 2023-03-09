@@ -1,4 +1,4 @@
-# 00 Code Aesthetic
+# Code Aesthetics
 
 
 I was going through my twitter feed and saw uncle bob sharing a youtube video on "never nesters".
