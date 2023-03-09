@@ -11,7 +11,7 @@ license: ""
 images: []
 
 tags: [Professional Development]
-categories: [Software Enginering]
+categories: [Software Engineering]
 
 featuredImage: ""
 featuredImagePreview: ""
