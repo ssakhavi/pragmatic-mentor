@@ -1,5 +1,5 @@
 ---
-title: "00 Code Aesthetic"
+title: "Code Aesthetics"
 subtitle: ""
 date: 2023-02-01T15:08:08+08:00
 lastmod: 2023-02-01T15:08:08+08:00
