@@ -2,7 +2,7 @@ baseURL: https://www.pragmatic-mentor.xyz
 disablePathToLower: true
 languageCode: en-us
 title: A Journey into Pragmatism
-theme: "LoveIt"
+theme: "FixIt"
 disqusShortname: siavashsakhavi
 
 menu:
