@@ -11,3 +11,9 @@ This is a selling point for the AI Singapore AIAP program, especially the 100E P
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=yARewF1V9rU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
+
+---
+
+> Author: Siavash  
+> URL: https://www.pragmatic-mentor.xyz/2023-03-09-hobby-vs-professional/  
+

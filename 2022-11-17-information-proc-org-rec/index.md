@@ -73,3 +73,9 @@ flowchart LR
     Retrieval --> id2((Output Data))
 {{< /mermaid >}}
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/2022-11-17-information-proc-org-rec/  
+

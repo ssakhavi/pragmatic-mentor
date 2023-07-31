@@ -32,3 +32,9 @@ My Takeaways from this experience:
 
 Take care.
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/2020-06-30-challenge-decision-making/  
+

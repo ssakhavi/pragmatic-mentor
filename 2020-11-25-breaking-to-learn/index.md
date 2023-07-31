@@ -27,3 +27,9 @@ Takeaway:
 * Sometimes you need to break the code to understand the problem and design your code in a better way.
 * Don't write your code and assume because it's working, you don't have any bugs. Bugs won't show if you don't give your code a bit of a shake.
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/2020-11-25-breaking-to-learn/  
+

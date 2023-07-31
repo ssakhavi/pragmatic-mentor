@@ -58,3 +58,9 @@ For my masters I was at Sharif University of Technology under the supervision of
 
 For my PhD, I was part of at joint PhD program between A\*STAR and NUS. I was mainly based in the Brain-Computer Interface Lab @ A\*STAR. I was working under the supervision of Dr. Guan Cuntai and Dr. Yan Shuicheng. My thesis is on the application of Deep Learning Methods in Brain-Computer Interfaces. I also worked on Object Detection and Proposal Generation during my third year when I was stationed at the Learning and Vision Lab @NUS.
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/about/  
+

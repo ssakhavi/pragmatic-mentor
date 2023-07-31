@@ -16,3 +16,9 @@ These are some interesting learning points:
 
 <!--more-->
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/2023-02-01-mlaas-vs-mlops/  
+

@@ -82,3 +82,9 @@ _(Note: This list is going to grow.)_
 
 I will be writing more about each of the items above and link the related posts.
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/2021-11-22-being-a-tech-lead-at-aisg/  
+

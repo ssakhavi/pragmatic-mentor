@@ -36,3 +36,9 @@ Machine Learning Engineer and Tech Lead @AISG.
 
 
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/2021-11-24-software-eng-at-google/  
+

@@ -155,3 +155,9 @@ JAX is another functional programming framework for machine learning, built on t
 The use of functional programming in machine learning is still relatively new, but it is gaining traction as a way to improve the efficiency and modularity of machine learning code. If you are interested in functional programming and machine learning, then learning about Functorch and JAX could be a useful addition to your skillset.
 
 
+
+---
+
+> Author: Siavash Sakhavi  
+> URL: https://www.pragmatic-mentor.xyz/2022-12-02-functional-programming-in-ml/  
+
