@@ -2,7 +2,7 @@ baseURL = "https://www.pragmatic-mentor.xyz"
 
 # theme
 # 主题
-theme = "LoveIt"
+theme = "FixIt"
 # themes directory
 # 主题目录
 themesDir = "themes/"
