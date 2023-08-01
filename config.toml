@@ -7,6 +7,8 @@
 # Menu Configuration
 # See: https://fixit.lruihao.cn/documentation/basics/#menu-configuration
 # -------------------------------------------------------------------------------------
+baseURL = "https://www.pragmatic-mentor.xyz"
+
 [menu]
   [[menu.main]]
     identifier = "posts"
