@@ -175,9 +175,9 @@ baseURL = "https://www.pragmatic-mentor.xyz"
     # FixIt 0.2.12 | NEW Header subtitle config
     [params.header.subtitle]
       # subtitle name
-      name = ""
+      name = "by Siavash Sakhavi"
       # whether to use typeit animation for subtitle name
-      typeit = false
+      typeit = true
 
   # FixIt 0.2.18 | NEW Breadcrumb config
   [params.breadcrumb]
