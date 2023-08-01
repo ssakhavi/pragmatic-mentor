@@ -52,7 +52,7 @@
 
 ## Favorite Newsletters & Feeds
 
-- [Pointer]](https://www.pointer.io/)
+- [Pointer](https://www.pointer.io/)
 - [Ness Labs](https://nesslabs.com/newsletter)
 - [Slow Growth](https://slowgrowth.com/)
 - [Linking Your Thinking](https://www.linkingyourthinking.com/learn-more)
