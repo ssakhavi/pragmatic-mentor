@@ -1,4 +1,7 @@
-# Some of my favorite things
+---
+title: "Favorites"
+summary: "Some of my favorite things"
+---
 
 ## Favorite YouTube Channels
 
