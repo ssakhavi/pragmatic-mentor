@@ -62,3 +62,14 @@ summary: "Some of my favorite things"
 - [AlphaSignal](https://alphasignal.ai/)
 - [Hugging Face Blog](https://huggingface.co/blog/)
 - [TLDR AI](https://www.tldrnewsletter.com/)
+- [Will Larson](https://lethain.com/)
+- [Scott Young](https://www.scotthyoung.com/blog/)
+
+
+## Favorite Git Projects
+
+- [Pytorch Lightning](https://github.com/Lightning-AI/lightning)
+- [Kedro](https://github.com/kedro-org/kedro)
+- [FastAPI](https://github.com/tiangolo/fastapi)
+- [LlamaIndex](https://github.com/jerryjliu/llama_index)
+- [Unstructured](https://github.com/Unstructured-IO/unstructured)
