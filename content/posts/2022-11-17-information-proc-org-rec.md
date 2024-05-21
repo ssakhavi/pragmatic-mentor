@@ -70,10 +70,3 @@ Hopefully, I've shared something useful with you in this article and made you th
 
 Siavash
 
-{{< mermaid >}}
-flowchart LR
-    id1((RawData)) --> Processing
-    Processing --> Organization
-    Organization --> Retrieval
-    Retrieval --> id2((Output Data))
-{{< /mermaid >}}
