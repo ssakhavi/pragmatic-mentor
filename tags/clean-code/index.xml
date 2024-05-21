@@ -1,11 +1,11 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Clean Code - Tag -</title><link>/tags/clean-code/</link><description>Clean Code - Tag -</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 01 Feb 2023 15:08:08 +0800</lastBuildDate><atom:link href="/tags/clean-code/" rel="self" type="application/rss+xml"/><item><title>Code Aesthetics</title><link>/posts/2023-02-02-code-aesthetic/</link><pubDate>Wed, 01 Feb 2023 15:08:08 +0800</pubDate><author>Author</author><guid>/posts/2023-02-02-code-aesthetic/</guid><description><![CDATA[<p>I was going through my twitter feed and saw uncle bob sharing a youtube video on &ldquo;never nesters&rdquo;.
-When I saw the &ldquo;never nesters&rdquo; title, I thought to myself that this is possibly a video about code styles or how to
-write clean code. Out of curioisty I went to the youtube channel and, lo and behold, I had found a gold mine: <strong>Code Aesthetic</strong></p>
-<p>This channel has done a few special things:</p>
-<ol>
-<li>It has explained problems with code from both a aesthetic point of view and also, from a technical point of view</li>
-<li>I love the simplicity of the video in terms of the content of each frame. You can read the code snippets and follow through the changes that are going to be eventually made.</li>
-<li>The videos question some of the &ldquo;norms&rdquo; in coding. For example, the concept of &ldquo;writing comments to explain code&rdquo;.</li>
-</ol>
-<p>I immediately suscribed and added it to my Mailbrew Youtube list. I recommend you suscribe as well.</p>
-<p><a href="https://www.youtube.com/@CodeAesthetic"target="_blank" rel="external nofollow noopener noreferrer">https://www.youtube.com/@CodeAesthetic</a></p>]]></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Clean Code on The Pragmatic Mentor</title><link>https://www.pragmatic-mentor.xyz/tags/clean-code/</link><description>Recent content in Clean Code on The Pragmatic Mentor</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 01 Feb 2023 15:08:08 +0800</lastBuildDate><atom:link href="https://www.pragmatic-mentor.xyz/tags/clean-code/index.xml" rel="self" type="application/rss+xml"/><item><title>Code Aesthetics</title><link>https://www.pragmatic-mentor.xyz/posts/2023-02-02-code-aesthetic/</link><pubDate>Wed, 01 Feb 2023 15:08:08 +0800</pubDate><guid>https://www.pragmatic-mentor.xyz/posts/2023-02-02-code-aesthetic/</guid><description>&lt;p>I was going through my twitter feed and saw uncle bob sharing a youtube video on &amp;ldquo;never nesters&amp;rdquo;.
+When I saw the &amp;ldquo;never nesters&amp;rdquo; title, I thought to myself that this is possibly a video about code styles or how to
+write clean code. Out of curioisty I went to the youtube channel and, lo and behold, I had found a gold mine: &lt;strong>Code Aesthetic&lt;/strong>&lt;/p>
+&lt;p>This channel has done a few special things:&lt;/p>
+&lt;ol>
+&lt;li>It has explained problems with code from both a aesthetic point of view and also, from a technical point of view&lt;/li>
+&lt;li>I love the simplicity of the video in terms of the content of each frame. You can read the code snippets and follow through the changes that are going to be eventually made.&lt;/li>
+&lt;li>The videos question some of the &amp;ldquo;norms&amp;rdquo; in coding. For example, the concept of &amp;ldquo;writing comments to explain code&amp;rdquo;.&lt;/li>
+&lt;/ol>
+&lt;p>I immediately suscribed and added it to my Mailbrew Youtube list. I recommend you suscribe as well.&lt;/p>
+&lt;p>&lt;a href="https://www.youtube.com/@CodeAesthetic" target="_blank" rel="noreferrer">https://www.youtube.com/@CodeAesthetic&lt;/a>&lt;/p></description></item></channel></rss>

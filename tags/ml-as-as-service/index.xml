@@ -1,10 +1,10 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>ML-as-as-Service - Tag -</title><link>/tags/ml-as-as-service/</link><description>ML-as-as-Service - Tag -</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 01 Feb 2023 10:48:39 +0800</lastBuildDate><atom:link href="/tags/ml-as-as-service/" rel="self" type="application/rss+xml"/><item><title>MLaaS vs MLOps</title><link>/posts/2023-02-01-mlaas-vs-mlops/</link><pubDate>Wed, 01 Feb 2023 10:48:39 +0800</pubDate><author>Author</author><guid>/posts/2023-02-01-mlaas-vs-mlops/</guid><description><![CDATA[<p>I watched this interesting video regarding the differences of MLOps (e.g. Train, Serve, Monitor your own model) vs ML-as-a-Service (e.g. Foundation Models).</p>
-<p><a href="https://www.youtube.com/watch?v=AK1jWpLm2Ao"target="_blank" rel="external nofollow noopener noreferrer">MLOps vs ML-As-Service // Jill Chase and Manmeet Gujral</a></p>
-<p>These are some interesting learning points:</p>
-<ul>
-<li>MLaaS tend to be more B2C and MLOps is mainly B2B</li>
-<li>Foundation Models have pushed the MLOps Frameworks to emphasize on the software&rsquo;s ability to perform fine-tuning</li>
-<li>MLOps revenue generation is not as fast as MLaaS but the contracts and projects are bigger</li>
-<li>MLOps tends to lean towards providing for instances of Proprietary Data.</li>
-</ul>
-<!-- raw HTML omitted -->]]></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ML-as-as-Service on The Pragmatic Mentor</title><link>https://www.pragmatic-mentor.xyz/tags/ml-as-as-service/</link><description>Recent content in ML-as-as-Service on The Pragmatic Mentor</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 01 Feb 2023 10:48:39 +0800</lastBuildDate><atom:link href="https://www.pragmatic-mentor.xyz/tags/ml-as-as-service/index.xml" rel="self" type="application/rss+xml"/><item><title>MLaaS vs MLOps</title><link>https://www.pragmatic-mentor.xyz/posts/2023-02-01-mlaas-vs-mlops/</link><pubDate>Wed, 01 Feb 2023 10:48:39 +0800</pubDate><guid>https://www.pragmatic-mentor.xyz/posts/2023-02-01-mlaas-vs-mlops/</guid><description>&lt;p>I watched this interesting video regarding the differences of MLOps (e.g. Train, Serve, Monitor your own model) vs ML-as-a-Service (e.g. Foundation Models).&lt;/p>
+&lt;p>&lt;a href="https://www.youtube.com/watch?v=AK1jWpLm2Ao" target="_blank" rel="noreferrer">MLOps vs ML-As-Service // Jill Chase and Manmeet Gujral&lt;/a>&lt;/p>
+&lt;p>These are some interesting learning points:&lt;/p>
+&lt;ul>
+&lt;li>MLaaS tend to be more B2C and MLOps is mainly B2B&lt;/li>
+&lt;li>Foundation Models have pushed the MLOps Frameworks to emphasize on the software&amp;rsquo;s ability to perform fine-tuning&lt;/li>
+&lt;li>MLOps revenue generation is not as fast as MLaaS but the contracts and projects are bigger&lt;/li>
+&lt;li>MLOps tends to lean towards providing for instances of Proprietary Data.&lt;/li>
+&lt;/ul>
+&lt;!-- raw HTML omitted --></description></item></channel></rss>
