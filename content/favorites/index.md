@@ -1,7 +1,14 @@
 ---
 title: "Favorites"
 summary: "Some of my favorite things"
+showDate: false
+showAuthor: false 	
+showSummary: true
+showReadingTime: false
+invertPagination: true
 ---
+The following are a bunch links to things that I enjoy **watching**, 
+**reading**, and **listening** to. 
 
 ## Favorite YouTube Channels
 

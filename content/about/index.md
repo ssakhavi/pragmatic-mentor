@@ -2,6 +2,11 @@
 title: "About Me"
 layout: "About"
 summary: "About Page"
+cascade:
+  showReadingTime: false
+  showDate: false
+  showWordCount: false
+  showAuthor: false
 ---
 
 My name is Siavash (See-ya-vash) Sakhavi. Nice to meet you!

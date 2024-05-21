@@ -1,0 +1,11 @@
+# config/_default/languages.en.toml
+
+title = "The Pragmatic Mentor"
+
+[author]
+name = "Siavash Sakhavi"
+headline = "Engineer, Mentor"
+links = [
+  { github = "https://www.github.com/ssakhavi" },
+  {linkedin= "https://www.linkedin.com/in/siavashsakhavi/"}
+]
