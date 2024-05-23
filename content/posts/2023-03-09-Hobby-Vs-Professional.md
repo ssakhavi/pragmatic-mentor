@@ -9,6 +9,7 @@ authorLink: ""
 description: "How to become more professional "
 license: ""
 images: []
+featured: True
 
 tags: [Professional Development]
 categories: [Software Engineering]
