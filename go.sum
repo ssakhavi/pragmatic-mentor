@@ -4,6 +4,8 @@ github.com/hugo-fixit/FixIt v0.3.6 h1:7ulU0y8U//1/2jXnm9xRYXShfHi2anSrzk0HNWjrBg
 github.com/hugo-fixit/FixIt v0.3.6/go.mod h1:3XIRedrqakO7/a4ZnhE46haMRF8HgsT0N0B5j5D2iRU=
 github.com/jpanther/congo/v2 v2.8.2 h1:UNg7225ZqLSt9zu0xBOh5iM9TXnuNG1Ta9eSsioHTEE=
 github.com/jpanther/congo/v2 v2.8.2/go.mod h1:1S7DRoO1ZYS4YUdFd1LjTkdyjQwsjFWd8TqSfz3Jd+M=
+github.com/jpanther/congo/v2 v2.11.0 h1:whwuUIn20egAPfMR3HaFu7sW7/rz096bz26sgpsUAwk=
+github.com/jpanther/congo/v2 v2.11.0/go.mod h1:1S7DRoO1ZYS4YUdFd1LjTkdyjQwsjFWd8TqSfz3Jd+M=
 github.com/nanxiaobei/hugo-paper v0.0.0-20240513183536-90059f787877 h1:92A4/cwJmNVxk8B8au1rtJ3AdsGbUwsVGwtaCVU0IJM=
 github.com/nanxiaobei/hugo-paper v0.0.0-20240513183536-90059f787877/go.mod h1:cS2hTYPgmZ2FkPTQbOiX6vB0yLQcWD067kJx2lkRPVQ=
 github.com/nunocoracao/blowfish/v2 v2.67.0 h1:M5rKsFaFD3+BV28u7mOKEK93TXazs3BB5QW2xid3u+8=
