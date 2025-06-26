@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section class="links">
+    <h1>{{ .Title }}</h1>
+    <div class="linktree">
+        {{ range .Params.links }}
+        <div class="link-item">
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+                {{ .title }}
+            </a>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<style>
+.linktree {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.link-item {
+    margin: 1rem 0;
+}
+
+.link-item a {
+    display: block;
+    padding: 1rem;
+    background: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.link-item a:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+</style>
+{{ end }}
