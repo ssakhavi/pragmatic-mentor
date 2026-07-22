@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 import remarkHighlightNotes from "./src/plugins/remark-highlight-notes.mjs";
 
 export default defineConfig({
-  site: "https://www.pragmatic-mentor.xyz",
+  site: "https://www.siavashsakhavi.com",
   markdown: {
     remarkPlugins: [remarkGfm, remarkHighlightNotes],
   },
