@@ -26,7 +26,7 @@ I searched the names of the interviewees and found out they were the authors of 
 **"Software Engineering at Google"**. I can't tell you how many times I'd seen this book on
 different websites and how much I wanted to read it. Unfortunately, I would always de-prioritize
 it on my reading list. I went to the book on my O'Reilly account, opened the TOC and then,
-my jaw dropped. The TOC was almost all of the things I wrote down in [my previous post](/blog/being-a-tech-lead-at-aisg/) and more.
+my jaw dropped. The TOC was almost all of the things I wrote down in [my previous post](../being-a-tech-lead-at-aisg/) and more.
 
 To my amazement, the book is also shared for free on their [website](https://abseil.io/resources/swe-book).
 

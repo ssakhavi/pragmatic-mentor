@@ -5,6 +5,7 @@ interface Props {
 }
 const { title, lead } = Astro.props;
 const SITE_TITLE = "The Pragmatic Mentor";
+const base = import.meta.env.BASE_URL;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -67,11 +68,11 @@ const SITE_TITLE = "The Pragmatic Mentor";
 <body>
   <div class="site-nav">
     <div class="inner">
-      <a class="wordmark" href="/">{SITE_TITLE}</a>
+      <a class="wordmark" href={base}>{SITE_TITLE}</a>
       <nav>
-        <a href="/">Blog</a>
-        <a href="/about/">About</a>
-        <a href="/favorites/">Favorites</a>
+        <a href={base}>Blog</a>
+        <a href={`${base}about/`}>About</a>
+        <a href={`${base}favorites/`}>Favorites</a>
       </nav>
     </div>
   </div>
@@ -86,7 +87,7 @@ const SITE_TITLE = "The Pragmatic Mentor";
   <footer>
     <div class="inner">
       <span>&copy; {new Date().getFullYear()} Siavash Sakhavi</span>
-      <a href="/">Back to blog</a>
+      <a href={base}>Back to blog</a>
     </div>
   </footer>
 </body>

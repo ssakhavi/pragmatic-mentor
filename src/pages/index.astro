@@ -5,6 +5,7 @@ const posts = (await getCollection("blog")).sort(
   (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
 );
 const SITE_TITLE = "The Pragmatic Mentor";
+const base = import.meta.env.BASE_URL;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -62,11 +63,11 @@ const SITE_TITLE = "The Pragmatic Mentor";
 <body>
   <div class="site-nav">
     <div class="inner">
-      <a class="wordmark" href="/">{SITE_TITLE}</a>
+      <a class="wordmark" href={base}>{SITE_TITLE}</a>
       <nav>
-        <a href="/">Blog</a>
-        <a href="/about/">About</a>
-        <a href="/favorites/">Favorites</a>
+        <a href={base}>Blog</a>
+        <a href={`${base}about/`}>About</a>
+        <a href={`${base}favorites/`}>Favorites</a>
       </nav>
     </div>
   </div>
@@ -78,14 +79,14 @@ const SITE_TITLE = "The Pragmatic Mentor";
       <p>
         I have a passion for Machine Learning, Leadership, and Human Interactions.
         This blog is a way of showing my love for sharing my experiences and
-        knowledge with others. Read more <a href="/about/">about me</a>.
+        knowledge with others. Read more <a href={`${base}about/`}>about me</a>.
       </p>
     </div>
     <h2 class="section-title">Posts</h2>
     <ul>
       {posts.map((post) => (
         <li>
-          <a class="title" href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          <a class="title" href={`${base}blog/${post.slug}/`}>{post.data.title}</a>
           {post.data.description && <p class="description">{post.data.description}</p>}
           <p class="meta">
             {post.data.date}

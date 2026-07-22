@@ -19,6 +19,7 @@ interface Props {
 }
 const { title, date, tags, description, notes, outline } = Astro.props;
 const SITE_TITLE = "The Pragmatic Mentor";
+const base = import.meta.env.BASE_URL;
 const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cite", hl: "Note" };
 ---
 <!DOCTYPE html>
@@ -145,11 +146,11 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
 <body>
   <div class="site-nav" id="top">
     <div class="inner">
-      <a class="wordmark" href="/">{SITE_TITLE}</a>
+      <a class="wordmark" href={base}>{SITE_TITLE}</a>
       <nav>
-        <a href="/">Blog</a>
-        <a href="/about/">About</a>
-        <a href="/favorites/">Favorites</a>
+        <a href={base}>Blog</a>
+        <a href={`${base}about/`}>About</a>
+        <a href={`${base}favorites/`}>Favorites</a>
       </nav>
     </div>
   </div>
