@@ -1,3 +1,0 @@
-[goldmark]
-  [goldmark.renderer]
-    unsafe = true  # This allows raw HTML in markdown files

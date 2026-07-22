@@ -1,0 +1,14 @@
+---
+title: "Hobbies vs Professional Development"
+date: "2023-03-09"
+tags: ["Professional Development", "Software Engineering"]
+description: "How to become more professional"
+---
+
+This is a very beautiful and interesting video from Dave Farley. I love the guy for his insights.
+
+When it comes to development, it's very important to do exploratory learning via hobbies to learn general matters. However, it's only when we do professional development based on the requirements of stakeholders that we learn the most and produce high quality code.
+
+This is a selling point for the AI Singapore AIAP program, especially the 100E Program. You might know how to do data science or even being able to participate in a Kaggle competition, but until you have a project sponsor and have to hand over code, you aren't upping your game.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yARewF1V9rU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

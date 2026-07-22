@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+);
+const SITE_TITLE = "The Pragmatic Mentor";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{SITE_TITLE}</title>
+  <style>
+    :root{
+      --ink:#141414; --gray:#6e6e6e; --rule:#e6e6e6; --bg:#ffffff;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+      font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+    a{color:inherit;}
+
+    .site-nav{border-bottom:1px solid var(--rule);}
+    .site-nav .inner{max-width:1180px;margin:0 auto;padding:20px 24px;
+      display:flex;align-items:center;justify-content:space-between;}
+    .wordmark{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      text-decoration:none;color:var(--ink);}
+    .site-nav nav a{font-size:13px;color:var(--gray);text-decoration:none;margin-left:24px;}
+    .site-nav nav a:hover{color:var(--ink);}
+
+    main{max-width:680px;margin:0 auto;padding:64px 24px 96px;}
+    .intro{margin:0 0 56px;}
+    .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--gray);margin:0 0 18px;}
+    h1{font-size:2.2rem;font-weight:800;letter-spacing:-.01em;margin:0 0 16px;}
+    .intro p{font-size:1.05rem;line-height:1.65;color:var(--gray);margin:0 0 14px;max-width:580px;}
+    .intro p:last-child{margin-bottom:0;}
+    .intro a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;}
+
+    h2.section-title{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--gray);margin:0 0 20px;padding-top:24px;border-top:1px solid var(--rule);}
+
+    ul{list-style:none;margin:0;padding:0;}
+    li{border-top:1px solid var(--rule);padding:22px 0;}
+    li:first-child{border-top:none;}
+    a.title{font-size:18px;font-weight:700;color:var(--ink);text-decoration:none;
+      letter-spacing:-.005em;}
+    a.title:hover{text-decoration:underline;text-underline-offset:3px;}
+    p.description{font-size:14px;color:var(--gray);margin:6px 0 0;line-height:1.5;}
+    p.meta{font-size:13px;color:var(--gray);margin:6px 0 0;}
+    p.meta .sep{margin:0 7px;color:var(--rule);}
+
+    footer{border-top:1px solid var(--rule);padding:28px 24px;}
+    footer .inner{max-width:1180px;margin:0 auto;font-size:12.5px;color:var(--gray);
+      display:flex;justify-content:space-between;}
+    footer a{color:var(--gray);text-decoration:none;}
+    footer a:hover{color:var(--ink);}
+  </style>
+</head>
+<body>
+  <div class="site-nav">
+    <div class="inner">
+      <a class="wordmark" href="/">{SITE_TITLE}</a>
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/about/">About</a>
+        <a href="/favorites/">Favorites</a>
+      </nav>
+    </div>
+  </div>
+  <main>
+    <div class="intro">
+      <p class="eyebrow">Welcome</p>
+      <h1>{SITE_TITLE}</h1>
+      <p>Hi, my name is Siavash. I'm an AI Engineer / Mentor at AI Singapore.</p>
+      <p>
+        I have a passion for Machine Learning, Leadership, and Human Interactions.
+        This blog is a way of showing my love for sharing my experiences and
+        knowledge with others. Read more <a href="/about/">about me</a>.
+      </p>
+    </div>
+    <h2 class="section-title">Posts</h2>
+    <ul>
+      {posts.map((post) => (
+        <li>
+          <a class="title" href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          {post.data.description && <p class="description">{post.data.description}</p>}
+          <p class="meta">
+            {post.data.date}
+            {post.data.tags.map((t: string) => (
+              <>
+                <span class="sep">·</span>{t}
+              </>
+            ))}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </main>
+  <footer>
+    <div class="inner">
+      <span>&copy; {new Date().getFullYear()} Siavash Sakhavi</span>
+      <span>
+        <a href="https://www.github.com/ssakhavi">GitHub</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://www.linkedin.com/in/siavashsakhavi/">LinkedIn</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

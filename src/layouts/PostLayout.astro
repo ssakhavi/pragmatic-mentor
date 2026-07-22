@@ -1,0 +1,256 @@
+---
+interface Note {
+  label: string;
+  type: "info" | "warn" | "cite" | "hl";
+  text: string;
+}
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  title: string;
+  date: string;
+  tags: string[];
+  description?: string;
+  notes: Note[];
+  outline: Heading[];
+}
+const { title, date, tags, description, notes, outline } = Astro.props;
+const SITE_TITLE = "The Pragmatic Mentor";
+const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cite", hl: "Note" };
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <style is:global>
+    :root{
+      --ink:#141414; --gray:#6e6e6e; --rule:#e6e6e6; --bg:#ffffff;
+      --info:#1c5c8c; --warn:#b8720d; --cite:#555555; --hl:#8c1c1c;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+      --mono:"SF Mono",Menlo,Consolas,monospace;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+      font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+    a{color:inherit;}
+
+    .site-nav{border-bottom:1px solid var(--rule);}
+    .site-nav .inner{max-width:1180px;margin:0 auto;padding:20px 24px;
+      display:flex;align-items:center;justify-content:space-between;}
+    .wordmark{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      text-decoration:none;color:var(--ink);}
+    .site-nav nav a{font-size:13px;color:var(--gray);text-decoration:none;margin-left:24px;}
+    .site-nav nav a:hover{color:var(--ink);}
+
+    .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--gray);margin:0 0 18px;}
+    h1{font-size:2.6rem;line-height:1.12;font-weight:800;letter-spacing:-.01em;margin:0 0 16px;
+      max-width:760px;}
+    p.meta{font-size:13.5px;color:var(--gray);margin:0;}
+    p.meta .sep{margin:0 8px;color:var(--rule);}
+    p.description{font-size:1.05rem;color:var(--gray);margin:16px 0 0;max-width:640px;
+      line-height:1.6;}
+
+    .layout{max-width:1180px;margin:0 auto;padding:64px 24px 96px;
+      display:grid;grid-template-columns:180px minmax(0,680px) 260px;
+      grid-template-rows:auto auto;row-gap:0;column-gap:40px;
+      grid-template-areas:
+        ".       header header"
+        "outline body   notes";}
+    .header{grid-area:header;padding-bottom:40px;}
+    .outline-col{grid-area:outline;}
+    .body-col{grid-area:body;min-width:0;}
+    .notes-col{grid-area:notes;}
+
+    @media (max-width:1150px){
+      .layout{grid-template-columns:minmax(0,680px) 260px;
+        grid-template-areas:"header header" "body notes";justify-content:center;}
+      .outline-col{display:none;}
+    }
+    @media (max-width:860px){
+      .layout{grid-template-columns:minmax(0,680px);
+        grid-template-areas:"header" "body" "notes";}
+      .notes-col{margin-top:40px;}
+    }
+
+    .outline-col{position:sticky;top:32px;align-self:start;}
+    .outline-title{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--gray);margin:0 0 12px;}
+    .outline-col ol{list-style:none;margin:0;padding:0;}
+    .outline-col li{margin:0 0 4px;}
+    .outline-col a{position:relative;display:block;font-size:12.5px;line-height:1.5;
+      color:var(--gray);text-decoration:none;padding:3px 0 3px 14px;
+      transition:color .15s;}
+    .outline-col a:hover{color:var(--ink);}
+    .outline-col a.active{color:var(--ink);font-weight:600;}
+    .outline-col a.active::before{content:"";position:absolute;left:0;top:50%;
+      width:5px;height:5px;border-radius:50%;background:var(--ink);
+      transform:translateY(-50%);}
+
+    .prose{font-size:17px;line-height:1.75;scroll-margin-top:32px;}
+    .prose p{margin:0 0 22px;}
+    .prose h2{font-size:1.3rem;font-weight:700;margin:2.2em 0 .7em;letter-spacing:-.005em;
+      scroll-margin-top:32px;}
+    .prose h3{font-size:1.05rem;font-weight:700;margin:1.8em 0 .6em;scroll-margin-top:32px;}
+    .prose a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;}
+    .prose ul,.prose ol{padding-left:1.3em;margin:0 0 22px;}
+    .prose blockquote{margin:0 0 22px;padding-left:18px;border-left:3px solid var(--rule);
+      color:var(--gray);font-style:italic;}
+    .prose code{font-family:var(--mono);font-size:.85em;background:#f4f4f4;
+      padding:.15em .4em;border-radius:3px;}
+    .prose pre{background:#f7f7f7;border:1px solid var(--rule);border-radius:6px;
+      padding:1em 1.2em;overflow-x:auto;}
+    .prose pre code{background:none;padding:0;}
+    .prose img{max-width:100%;height:auto;}
+    .prose iframe{max-width:100%;}
+    .prose hr{border:none;border-top:1px solid var(--rule);margin:2.5em 0;}
+
+    mark{background:transparent;color:inherit;font-weight:600;cursor:pointer;
+      transition:color .15s;}
+    mark[data-type="info"]{color:var(--info);}
+    mark[data-type="warn"]{color:var(--warn);}
+    mark[data-type="cite"]{color:var(--cite);}
+    mark[data-type="hl"]{color:var(--hl);}
+    mark.active{text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;}
+
+    .notes-col{font-size:12.5px;line-height:1.6;}
+    .notes-title{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--gray);margin:0 0 16px;}
+    .note{color:var(--gray);margin:0 0 20px;padding:0 0 0 12px;
+      border-left:2px solid var(--rule);opacity:.55;transition:opacity .15s,border-color .15s;}
+    .note.active{opacity:1;}
+    .note[data-type="info"].active{border-left-color:var(--info);}
+    .note[data-type="warn"].active{border-left-color:var(--warn);}
+    .note[data-type="cite"].active{border-left-color:var(--cite);}
+    .note[data-type="hl"].active{border-left-color:var(--hl);}
+    .note .tag{display:block;font-size:9.5px;font-weight:700;letter-spacing:.06em;
+      text-transform:uppercase;margin-bottom:3px;}
+    .note[data-type="info"] .tag{color:var(--info);}
+    .note[data-type="warn"] .tag{color:var(--warn);}
+    .note[data-type="cite"] .tag{color:var(--cite);}
+    .note[data-type="hl"] .tag{color:var(--hl);}
+
+    footer{border-top:1px solid var(--rule);padding:28px 24px;}
+    footer .inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;
+      font-size:12.5px;color:var(--gray);}
+    footer a{color:var(--gray);text-decoration:none;}
+    footer a:hover{color:var(--ink);}
+  </style>
+</head>
+<body>
+  <div class="site-nav" id="top">
+    <div class="inner">
+      <a class="wordmark" href="/">{SITE_TITLE}</a>
+      <nav>
+        <a href="/">Blog</a>
+        <a href="/about/">About</a>
+        <a href="/favorites/">Favorites</a>
+      </nav>
+    </div>
+  </div>
+  <div class="layout">
+    <div class="header">
+      <p class="eyebrow">Article</p>
+      <h1>{title}</h1>
+      <p class="meta">
+        {date}
+        {tags.map((t) => (
+          <>
+            <span class="sep">·</span>{t}
+          </>
+        ))}
+      </p>
+      {description && <p class="description">{description}</p>}
+    </div>
+    <div class="outline-col">
+      {outline.length > 0 && (
+        <>
+          <p class="outline-title">Contents</p>
+          <ol>
+            <li><a href="#article-top" data-outline-link>Introduction</a></li>
+            {outline.map((h) => (
+              <li><a href={`#${h.slug}`} data-outline-link>{h.text}</a></li>
+            ))}
+          </ol>
+        </>
+      )}
+    </div>
+    <div class="body-col">
+      <div class="prose" id="article-top">
+        <slot />
+      </div>
+    </div>
+    <div class="notes-col">
+      {notes.length > 0 && <p class="notes-title">Notes</p>}
+      {notes.map((n) => (
+        <div class="note" data-type={n.type} data-note={n.label}>
+          <span class="tag">{noteTag[n.type]}</span>{n.text}
+        </div>
+      ))}
+    </div>
+  </div>
+  <footer>
+    <div class="inner">
+      <span>&copy; {new Date().getFullYear()}</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+  <script>
+    document.querySelectorAll("mark[data-note]").forEach((m) => {
+      const noteId = m.getAttribute("data-note");
+      const note = document.querySelector(`.note[data-note="${noteId}"]`);
+      const on = () => { m.classList.add("active"); note?.classList.add("active"); };
+      const off = () => { m.classList.remove("active"); note?.classList.remove("active"); };
+      m.addEventListener("mouseenter", on);
+      m.addEventListener("mouseleave", off);
+      m.addEventListener("click", () => (m.classList.contains("active") ? off() : on()));
+    });
+
+    // Outline scroll-spy: mark which section is currently in view, on top
+    // of the existing click-to-jump links.
+    const outlineLinks = Array.from(document.querySelectorAll(".outline-col a[data-outline-link]"));
+    if (outlineLinks.length > 0) {
+      const sections = outlineLinks
+        .map((a) => document.querySelector(a.getAttribute("href")))
+        .filter(Boolean);
+
+      const setActive = (id) => {
+        outlineLinks.forEach((a) => {
+          a.classList.toggle("active", a.getAttribute("href") === `#${id}`);
+        });
+      };
+
+      const updateActiveOutline = () => {
+        const threshold = 96;
+        let current = sections[0];
+        for (const el of sections) {
+          if (el.getBoundingClientRect().top - threshold <= 0) {
+            current = el;
+          } else {
+            break;
+          }
+        }
+        if (current) setActive(current.id);
+      };
+
+      let ticking = false;
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateActiveOutline();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+      window.addEventListener("resize", updateActiveOutline);
+      updateActiveOutline();
+    }
+  </script>
+</body>
+</html>

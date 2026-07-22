@@ -1,0 +1,10 @@
+---
+import { getEntry } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+
+const entry = await getEntry("pages", "about");
+const { Content } = await entry.render();
+---
+<PageLayout title={entry.data.title} lead={entry.data.lead}>
+  <Content />
+</PageLayout>
