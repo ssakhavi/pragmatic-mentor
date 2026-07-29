@@ -24,13 +24,18 @@ src/
     config.ts         # content collection schemas
   layouts/
     PostLayout.astro  # blog post template (outline + body + notes)
-    PageLayout.astro  # simple page template (About, Favorites, glossary terms)
+    PageLayout.astro  # simple page template (About, Favorites, glossary, tags)
   pages/
     index.astro       # homepage: bio + post list
     about.astro        # renders content/pages/about.md
     favorites.astro   # renders content/pages/favorites.md
     blog/[slug].astro # renders content/blog/*.md
+    glossary/index.astro  # all glossary terms
     glossary/[slug].astro # renders content/glossary/*.md
+    tags/index.astro      # all tags
+    tags/[tag].astro      # posts for one tag
+  lib/
+    slugify.ts         # tag text -> URL slug
   plugins/
     remark-highlight-notes.mjs  # powers ==highlight==[^note] and ==term==((slug))
 public/
@@ -135,6 +140,22 @@ The full write-up, shown on the term's own page (`/glossary/mlops/`).
 Unlike footnote notes, glossary terms are reusable across posts — define
 the entry once, reference `==Term==((slug))` from as many posts as you
 like.
+
+### Tags and Glossary indexes
+
+Two central reference pages, linked from the site nav:
+
+- **`/tags/`** — every tag used across the blog, each linking to
+  **`/tags/[tag]/`**, a list of posts carrying that tag. Tags are also
+  clickable wherever they're shown (post pages, homepage list). Slugs are
+  derived automatically from the tag text (`slugifyTag` in
+  `src/lib/slugify.ts`) — no separate tag registry to keep in sync.
+- **`/glossary/`** — every glossary entry, with its summary and a link to
+  the full term page.
+
+Both are generated at build time from whatever's currently in
+`src/content/blog/*.md` and `src/content/glossary/*.md` — nothing to
+maintain by hand.
 
 ### Content collections
 

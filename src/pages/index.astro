@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { slugifyTag } from "../lib/slugify";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
@@ -52,6 +53,8 @@ const base = import.meta.env.BASE_URL;
     p.description{font-size:14px;color:var(--gray);margin:6px 0 0;line-height:1.5;}
     p.meta{font-size:13px;color:var(--gray);margin:6px 0 0;}
     p.meta .sep{margin:0 7px;color:var(--rule);}
+    p.meta .tag-link{color:var(--gray);text-decoration:none;}
+    p.meta .tag-link:hover{color:var(--ink);text-decoration:underline;}
 
     footer{border-top:1px solid var(--rule);padding:28px 24px;}
     footer .inner{max-width:1180px;margin:0 auto;font-size:12.5px;color:var(--gray);
@@ -66,6 +69,8 @@ const base = import.meta.env.BASE_URL;
       <a class="wordmark" href={base}>{SITE_TITLE}</a>
       <nav>
         <a href={base}>Blog</a>
+        <a href={`${base}glossary/`}>Glossary</a>
+        <a href={`${base}tags/`}>Tags</a>
         <a href={`${base}about/`}>About</a>
         <a href={`${base}favorites/`}>Favorites</a>
       </nav>
@@ -92,7 +97,7 @@ const base = import.meta.env.BASE_URL;
             {post.data.date}
             {post.data.tags.map((t: string) => (
               <>
-                <span class="sep">·</span>{t}
+                <span class="sep">·</span><a href={`${base}tags/${slugifyTag(t)}/`} class="tag-link">{t}</a>
               </>
             ))}
           </p>

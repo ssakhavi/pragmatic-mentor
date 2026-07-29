@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const terms = (await getCollection("glossary")).sort((a, b) =>
+  a.data.term.localeCompare(b.data.term)
+);
+const base = import.meta.env.BASE_URL;
+---
+<PageLayout
+  title="Glossary"
+  lead={`Terms referenced across the blog. Hover a "term°" marker in any post for a quick preview, or browse the full list here.`}
+>
+  <ul class="glossary-list">
+    {terms.map((t) => (
+      <li>
+        <a href={`${base}glossary/${t.slug}/`}>{t.data.term}</a>
+        <p>{t.data.summary}</p>
+      </li>
+    ))}
+  </ul>
+</PageLayout>
+<style>
+  .glossary-list{list-style:none;margin:0;padding:0;}
+  .glossary-list li{padding:18px 0;border-top:1px solid var(--rule);}
+  .glossary-list li:first-child{border-top:none;}
+  .glossary-list a{font-size:17px;font-weight:700;text-decoration:none;color:var(--ink);}
+  .glossary-list a:hover{text-decoration:underline;}
+  .glossary-list p{font-size:14px;color:var(--gray);margin:6px 0 0;line-height:1.5;}
+</style>

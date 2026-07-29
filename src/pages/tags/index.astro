@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { slugifyTag } from "../../lib/slugify";
+
+const posts = await getCollection("blog");
+const base = import.meta.env.BASE_URL;
+
+const tagMap = new Map();
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    const slug = slugifyTag(tag);
+    const existing = tagMap.get(slug);
+    if (existing) existing.count += 1;
+    else tagMap.set(slug, { label: tag, count: 1 });
+  }
+}
+const tags = Array.from(tagMap.entries())
+  .map(([slug, v]) => ({ slug, ...v }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+---
+<PageLayout title="Tags" lead="Every tag used across the blog — pick one to see matching posts.">
+  <ul class="tag-list">
+    {tags.map((t) => (
+      <li>
+        <a href={`${base}tags/${t.slug}/`}>
+          {t.label}
+          <span class="count">{t.count}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</PageLayout>
+<style>
+  .tag-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;}
+  .tag-list li{margin:0;}
+  .tag-list a{display:inline-flex;align-items:center;gap:7px;font-size:14px;
+    padding:7px 13px;border:1px solid var(--rule);border-radius:999px;
+    text-decoration:none;color:var(--ink);transition:border-color .15s;}
+  .tag-list a:hover{border-color:var(--ink);}
+  .tag-list .count{font-size:11px;color:var(--gray);}
+</style>
