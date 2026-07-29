@@ -18,4 +18,15 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { blog, pages };
+const glossary = defineCollection({
+  type: "content",
+  schema: z.object({
+    term: z.string(),
+    summary: z.string(),
+    // Optional: matches a blog post `tag` exactly, used to compute the
+    // "related posts" list shown in the hover card.
+    tag: z.string().optional(),
+  }),
+});
+
+export const collections = { blog, pages, glossary };

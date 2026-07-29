@@ -2,12 +2,24 @@
 interface Note {
   label: string;
   type: "info" | "warn" | "cite" | "hl";
+  style: "sidebar" | "hover";
   text: string;
 }
 interface Heading {
   depth: number;
   slug: string;
   text: string;
+}
+interface RelatedPost {
+  title: string;
+  slug: string;
+  date: string;
+}
+interface GlossaryTerm {
+  slug: string;
+  term: string;
+  summary: string;
+  relatedPosts: RelatedPost[];
 }
 interface Props {
   title: string;
@@ -16,8 +28,10 @@ interface Props {
   description?: string;
   notes: Note[];
   outline: Heading[];
+  glossary?: GlossaryTerm[];
 }
-const { title, date, tags, description, notes, outline } = Astro.props;
+const { title, date, tags, description, notes, outline, glossary = [] } = Astro.props;
+const sidebarNotes = notes.filter((n) => n.style !== "hover");
 const SITE_TITLE = "The Pragmatic Mentor";
 const base = import.meta.env.BASE_URL;
 const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cite", hl: "Note" };
@@ -118,23 +132,60 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
     mark[data-type="cite"]{color:var(--cite);}
     mark[data-type="hl"]{color:var(--hl);}
     mark.active{text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;}
+    /* Hover-style notes get a dotted underline at rest, since there's no
+       sidebar entry to signal "there's more here" the way sidebar-style
+       notes do. */
+    mark[data-style="hover"]{text-decoration:underline;text-decoration-style:dotted;
+      text-decoration-color:currentColor;text-underline-offset:3px;opacity:.85;}
+    mark[data-style="hover"]:hover,mark[data-style="hover"].active{opacity:1;}
+
+    .term{color:var(--ink);cursor:pointer;text-decoration:underline;text-decoration-style:dotted;
+      text-underline-offset:3px;}
+    .term-mark{font-size:.75em;color:var(--gray);margin-left:1px;}
 
     .notes-col{font-size:12.5px;line-height:1.6;}
     .notes-title{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
       color:var(--gray);margin:0 0 16px;}
     .note{color:var(--gray);margin:0 0 20px;padding:0 0 0 12px;
-      border-left:2px solid var(--rule);opacity:.55;transition:opacity .15s,border-color .15s;}
+      border-left:2px solid var(--rule);opacity:.55;transition:opacity .15s,border-color .15s;
+      position:relative;}
     .note.active{opacity:1;}
     .note[data-type="info"].active{border-left-color:var(--info);}
     .note[data-type="warn"].active{border-left-color:var(--warn);}
     .note[data-type="cite"].active{border-left-color:var(--cite);}
     .note[data-type="hl"].active{border-left-color:var(--hl);}
-    .note .tag{display:block;font-size:9.5px;font-weight:700;letter-spacing:.06em;
+    .note .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.06em;
       text-transform:uppercase;margin-bottom:3px;}
     .note[data-type="info"] .tag{color:var(--info);}
     .note[data-type="warn"] .tag{color:var(--warn);}
     .note[data-type="cite"] .tag{color:var(--cite);}
     .note[data-type="hl"] .tag{color:var(--hl);}
+    .note-backlink{display:inline-block;margin-right:6px;color:var(--gray);
+      text-decoration:none;font-size:10px;opacity:.7;}
+    .note-backlink:hover{opacity:1;color:var(--ink);}
+
+    /* Floating hover card, shared by hover-style notes and glossary terms. */
+    .hover-card{position:fixed;z-index:50;max-width:320px;background:var(--bg);
+      border:1px solid var(--rule);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.12);
+      padding:14px 16px;font-size:13px;line-height:1.55;color:var(--ink);
+      opacity:0;visibility:hidden;transform:translateY(4px);
+      transition:opacity .12s,transform .12s;pointer-events:none;}
+    .hover-card.visible{opacity:1;visibility:visible;transform:translateY(0);
+      pointer-events:auto;}
+    .hover-card--glossary{max-width:340px;}
+    .hover-card .hc-term{font-weight:700;font-size:13.5px;margin:0 0 6px;}
+    .hover-card .hc-body{margin:0;color:var(--ink);}
+    .hover-card .hc-readmore{display:inline-block;margin-top:8px;font-size:12px;
+      text-decoration:none;color:var(--gray);border-bottom:1px dotted var(--gray);}
+    .hover-card .hc-readmore:hover{color:var(--ink);}
+    .hover-card .hc-related{margin:10px 0 0;padding-top:10px;border-top:1px solid var(--rule);}
+    .hover-card .hc-related-title{font-size:10px;font-weight:700;letter-spacing:.06em;
+      text-transform:uppercase;color:var(--gray);margin:0 0 6px;}
+    .hover-card .hc-related ul{list-style:none;margin:0;padding:0;}
+    .hover-card .hc-related li{margin:0 0 6px;}
+    .hover-card .hc-related a{font-size:12.5px;text-decoration:none;color:var(--ink);}
+    .hover-card .hc-related a:hover{text-decoration:underline;}
+    .hover-card .hc-related .hc-date{display:block;font-size:11px;color:var(--gray);}
 
     footer{border-top:1px solid var(--rule);padding:28px 24px;}
     footer .inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;
@@ -187,9 +238,10 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
       </div>
     </div>
     <div class="notes-col">
-      {notes.length > 0 && <p class="notes-title">Notes</p>}
-      {notes.map((n) => (
+      {sidebarNotes.length > 0 && <p class="notes-title">Notes</p>}
+      {sidebarNotes.map((n) => (
         <div class="note" data-type={n.type} data-note={n.label}>
+          <a class="note-backlink" href={`#note-ref-${n.label}`} aria-label="Back to reference in text">^</a>
           <span class="tag">{noteTag[n.type]}</span>{n.text}
         </div>
       ))}
@@ -201,8 +253,11 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
       <a href="#top">Back to top</a>
     </div>
   </footer>
-  <script>
-    document.querySelectorAll("mark[data-note]").forEach((m) => {
+  <script type="application/json" id="glossary-data" set:html={JSON.stringify(glossary)} />
+  <script define:vars={{ base }}>
+    // Sidebar-style notes: hover/click the highlighted phrase, the matching
+    // entry lights up in the right-hand column (and vice versa).
+    document.querySelectorAll('mark[data-style="sidebar"]').forEach((m) => {
       const noteId = m.getAttribute("data-note");
       const note = document.querySelector(`.note[data-note="${noteId}"]`);
       const on = () => { m.classList.add("active"); note?.classList.add("active"); };
@@ -211,6 +266,94 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
       m.addEventListener("mouseleave", off);
       m.addEventListener("click", () => (m.classList.contains("active") ? off() : on()));
     });
+
+    // Hover-only notes and glossary terms: a single floating card, reused
+    // and repositioned for whichever element is currently hovered/focused.
+    (function setupHoverCards() {
+      const card = document.createElement("div");
+      card.className = "hover-card";
+      document.body.appendChild(card);
+
+      let glossaryData = [];
+      try {
+        const raw = document.getElementById("glossary-data")?.textContent;
+        if (raw) glossaryData = JSON.parse(raw);
+      } catch (e) {
+        glossaryData = [];
+      }
+      const glossaryBySlug = Object.fromEntries(glossaryData.map((g) => [g.slug, g]));
+
+      let hideTimer = null;
+      let activeTarget = null;
+
+      const cancelHide = () => {
+        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+      };
+      const scheduleHide = () => {
+        cancelHide();
+        hideTimer = setTimeout(() => {
+          card.classList.remove("visible");
+          activeTarget?.classList.remove("active");
+          activeTarget = null;
+        }, 150);
+      };
+
+      const position = (target) => {
+        const rect = target.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const margin = 8;
+        let left = rect.left;
+        left = Math.min(left, window.innerWidth - cardRect.width - margin);
+        left = Math.max(left, margin);
+        let top = rect.bottom + margin;
+        if (top + cardRect.height > window.innerHeight - margin) {
+          top = rect.top - cardRect.height - margin;
+        }
+        card.style.left = `${left}px`;
+        card.style.top = `${Math.max(top, margin)}px`;
+      };
+
+      const showFor = (target, html, variant) => {
+        cancelHide();
+        activeTarget = target;
+        target.classList.add("active");
+        card.className = `hover-card visible${variant ? ` hover-card--${variant}` : ""}`;
+        card.innerHTML = html;
+        position(target);
+      };
+
+      document.querySelectorAll('mark[data-style="hover"]').forEach((m) => {
+        const html = `<p class="hc-body">${m.getAttribute("data-note-text") || ""}</p>`;
+        m.addEventListener("mouseenter", () => showFor(m, html, "note"));
+        m.addEventListener("mouseleave", scheduleHide);
+        m.addEventListener("click", () => {
+          if (card.classList.contains("visible") && activeTarget === m) scheduleHide();
+          else showFor(m, html, "note");
+        });
+      });
+
+      document.querySelectorAll(".term[data-term]").forEach((t) => {
+        const g = glossaryBySlug[t.getAttribute("data-term")];
+        if (!g) return;
+        const related = g.relatedPosts && g.relatedPosts.length
+          ? `<div class="hc-related">
+              <p class="hc-related-title">Related posts</p>
+              <ul>${g.relatedPosts.map((p) => `<li><a href="${base}blog/${p.slug}/">${p.title}</a><span class="hc-date">${p.date}</span></li>`).join("")}</ul>
+            </div>`
+          : "";
+        const html = `<p class="hc-term">${g.term}</p><p class="hc-body">${g.summary}</p>
+          <a class="hc-readmore" href="${base}glossary/${g.slug}/">Read more &rarr;</a>${related}`;
+        t.addEventListener("mouseenter", () => showFor(t, html, "glossary"));
+        t.addEventListener("mouseleave", scheduleHide);
+        t.addEventListener("click", () => {
+          if (card.classList.contains("visible") && activeTarget === t) scheduleHide();
+          else showFor(t, html, "glossary");
+        });
+      });
+
+      card.addEventListener("mouseenter", cancelHide);
+      card.addEventListener("mouseleave", scheduleHide);
+    })();
 
     // Outline scroll-spy: mark which section is currently in view, on top
     // of the existing click-to-jump links.

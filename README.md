@@ -20,17 +20,19 @@ src/
   content/
     blog/            # blog posts (markdown)
     pages/            # About, Favorites (markdown)
+    glossary/         # reusable term definitions (markdown)
     config.ts         # content collection schemas
   layouts/
     PostLayout.astro  # blog post template (outline + body + notes)
-    PageLayout.astro  # simple page template (About, Favorites)
+    PageLayout.astro  # simple page template (About, Favorites, glossary terms)
   pages/
     index.astro       # homepage: bio + post list
     about.astro        # renders content/pages/about.md
     favorites.astro   # renders content/pages/favorites.md
     blog/[slug].astro # renders content/blog/*.md
+    glossary/[slug].astro # renders content/glossary/*.md
   plugins/
-    remark-highlight-notes.mjs  # powers the ==highlight==[^note] syntax
+    remark-highlight-notes.mjs  # powers ==highlight==[^note] and ==term==((slug))
 public/
   CNAME               # custom domain for GitHub Pages
 .github/workflows/
@@ -48,9 +50,11 @@ Blog posts (`PostLayout.astro`) render as three columns on wide screens:
   small scroll-spy script tracks which section is currently in view and
   puts a dot next to the active entry, in addition to click-to-jump.
 - **Center — the article** itself, in a readable ~680px column.
-- **Right — Notes.** Any highlighted phrases in the post (see below) get a
+- **Right — Notes.** Sidebar-style highlighted phrases (see below) get a
   matching note here. Notes are dim by default and light up when you
-  hover or click the highlighted phrase in the body (and vice versa).
+  hover or click the highlighted phrase in the body (and vice versa). Each
+  note has a small `^` backlink that jumps to where it's referenced in
+  the text.
 
 This collapses gracefully: the outline disappears under ~1150px, and the
 notes column drops below the article under ~860px, so the site is fully
@@ -78,18 +82,59 @@ works much like tree rings.
 - Immediately follow it with a footnote reference `[^label]`.
 - Define the note anywhere in the file with `[^label]: text`.
 
-The prefix of the label controls the color/category shown in the notes
-column:
+The label controls both the color/category and how the note is displayed
+— there's no separate frontmatter field, it's all read from the label
+text itself:
 
-| Prefix   | Meaning                          |
-|----------|-----------------------------------|
-| `info`   | supporting detail, explanation    |
-| `warn`   | caveat, risk, "read carefully"    |
-| `cite`   | source, reference, citation       |
-| *(other)*| falls back to a generic highlight |
+| Label contains | Effect |
+|-----------------|--------|
+| starts with `info` | info color (blue) |
+| starts with `warn` | warning color (amber) |
+| starts with `cite` | citation color (gray) |
+| *(anything else)*  | generic highlight color (red) |
+| contains `hover` anywhere | **display style**: shows as a floating popup right where you're reading, like a footnote — no entry in the sidebar |
+| *(no `hover`)* | **display style** (default): shows as a persistent entry in the right-hand notes column |
 
-None of the current posts use this yet (they were plain prose in Hugo), but
-it's ready to use in any future post.
+So `[^info1]` is a sidebar-style info note, `[^info-hover1]` is the exact
+same info-colored highlight but shown as a hover popup instead, and
+`[^hover1]` is a hover-style popup with the generic highlight color. Mix
+and match per note depending on whether the annotation is worth a
+permanent spot in the margin or just a quick aside.
+
+See `src/content/blog/mlaas-vs-mlops.md` for both variants in use.
+
+### Glossary terms (hover-preview cards)
+
+A second, separate syntax for reusable definitions — inspired by
+LessWrong's wiki-tag hover cards — that references a standalone glossary
+entry instead of an inline footnote:
+
+```markdown
+I watched a video on ==MLOps==((mlops)) vs ML-as-a-Service.
+```
+
+- Wrap the phrase in `==double equals==`, immediately followed by
+  `((slug))`, where `slug` matches a file in `src/content/glossary/`.
+- Hovering (or tapping) the phrase shows a card with the term's `term` and
+  `summary` frontmatter fields, a "Read more" link to a full page for that
+  term (`/glossary/slug/`), and — if the glossary entry sets a `tag` that
+  matches one or more post tags — a "Related posts" list.
+
+Glossary entries live in `src/content/glossary/*.md`:
+
+```markdown
+---
+term: "MLOps"
+summary: "One or two sentences for the hover card."
+tag: "Machine Learning"   # optional — matches a blog post `tag` for "Related posts"
+---
+
+The full write-up, shown on the term's own page (`/glossary/mlops/`).
+```
+
+Unlike footnote notes, glossary terms are reusable across posts — define
+the entry once, reference `==Term==((slug))` from as many posts as you
+like.
 
 ### Content collections
 
@@ -99,6 +144,8 @@ Two Astro content collections, defined in `src/content/config.ts`:
   (optional). Rendered through `PostLayout.astro`.
 - **`pages`** — schema: `title`, `lead` (optional). Currently just About
   and Favorites, rendered through `PageLayout.astro`.
+- **`glossary`** — schema: `term`, `summary`, `tag` (optional). Powers the
+  hover-preview definition cards; see "Glossary terms" above.
 
 ### Writing a new post
 

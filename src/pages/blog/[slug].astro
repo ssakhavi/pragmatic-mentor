@@ -14,6 +14,31 @@ const { post } = Astro.props;
 const { Content, headings, remarkPluginFrontmatter } = await post.render();
 const notes = remarkPluginFrontmatter.notes ?? [];
 const outline = headings.filter((h) => h.depth === 2);
+
+const glossarySlugs = remarkPluginFrontmatter.glossaryTerms ?? [];
+let glossary = [];
+if (glossarySlugs.length > 0) {
+  const allGlossary = await getCollection("glossary");
+  const allPosts = await getCollection("blog");
+  glossary = glossarySlugs
+    .map((slug) => allGlossary.find((g) => g.slug === slug))
+    .filter(Boolean)
+    .map((entry) => {
+      const relatedPosts = entry.data.tag
+        ? allPosts
+            .filter((p) => p.data.tags.includes(entry.data.tag) && p.slug !== post.slug)
+            .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf())
+            .slice(0, 4)
+            .map((p) => ({ title: p.data.title, slug: p.slug, date: p.data.date }))
+        : [];
+      return {
+        slug: entry.slug,
+        term: entry.data.term,
+        summary: entry.data.summary,
+        relatedPosts,
+      };
+    });
+}
 ---
 <PostLayout
   title={post.data.title}
@@ -22,6 +47,7 @@ const outline = headings.filter((h) => h.depth === 2);
   description={post.data.description}
   notes={notes}
   outline={outline}
+  glossary={glossary}
 >
   <Content />
 </PostLayout>
