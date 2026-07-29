@@ -19,17 +19,20 @@ bun run preview   # serve the production build locally
 src/
   content/
     blog/            # blog posts (markdown)
+    microblog/       # quick thoughts/updates (markdown)
     pages/            # About, Favorites (markdown)
     glossary/         # reusable term definitions (markdown)
     config.ts         # content collection schemas
   layouts/
     PostLayout.astro  # blog post template (outline + body + notes)
     PageLayout.astro  # simple page template (About, Favorites, glossary, tags)
+    MicroblogLayout.astro  # microblog post template (simple single-column)
   pages/
-    index.astro       # homepage: bio + post list
+    index.astro       # homepage: bio + microblog + post list
     about.astro        # renders content/pages/about.md
     favorites.astro   # renders content/pages/favorites.md
     blog/[slug].astro # renders content/blog/*.md
+    microblog/[slug].astro # renders content/microblog/*.md
     glossary/index.astro  # all glossary terms
     glossary/[slug].astro # renders content/glossary/*.md
     tags/index.astro      # all tags
@@ -159,10 +162,13 @@ maintain by hand.
 
 ### Content collections
 
-Two Astro content collections, defined in `src/content/config.ts`:
+Four Astro content collections, defined in `src/content/config.ts`:
 
 - **`blog`** — schema: `title`, `date`, `tags` (array), `description`
   (optional). Rendered through `PostLayout.astro`.
+- **`microblog`** — schema: `title` (optional), `date`. For quick thoughts
+  and updates that don't require a full blog post. Rendered through
+  `MicroblogLayout.astro`.
 - **`pages`** — schema: `title`, `lead` (optional). Currently just About
   and Favorites, rendered through `PageLayout.astro`.
 - **`glossary`** — schema: `term`, `summary`, `tag` (optional). Powers the
@@ -188,6 +194,23 @@ domain root or under a subpath.
 ```
 
 The filename (minus `.md`) becomes the URL slug: `/blog/your-slug/`.
+
+### Writing a new microblog post
+
+Add a file to `src/content/microblog/your-slug.md`:
+
+```markdown
+---
+date: "2026-01-01"
+title: "Optional Title"
+---
+
+Your quick thought or update here. Can be as short as a single sentence.
+No tags or description needed — just the content.
+```
+
+The filename (minus `.md`) becomes the URL slug: `/microblog/your-slug/`.
+The `title` field is optional — if omitted, only the date and content are shown.
 
 ## Deployment
 

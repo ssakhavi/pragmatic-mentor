@@ -29,4 +29,12 @@ const glossary = defineCollection({
   }),
 });
 
-export const collections = { blog, pages, glossary };
+const microblog = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string().optional(),
+    date: z.string(),
+  }),
+});
+
+export const collections = { blog, pages, glossary, microblog };

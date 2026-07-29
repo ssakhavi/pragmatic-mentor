@@ -1,0 +1,149 @@
+:root {
+  --ink: #141414;
+  --gray: #6e6e6e;
+  --rule: #e6e6e6;
+  --bg: #ffffff;
+  --info: #1c5c8c;
+  --warn: #b8720d;
+  --cite: #555555;
+  --hl: #8c1c1c;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "SF Mono", Menlo, Consolas, monospace;
+
+  /* Layout spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Scroll spy threshold */
+  --scroll-spy-threshold: 96px;
+
+  /* Hover card timing */
+  --hover-card-delay: 150ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.prose {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.prose p {
+  margin: 0 0 22px;
+}
+
+.prose h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 2.2em 0 0.7em;
+  letter-spacing: -0.005em;
+}
+
+.prose h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.8em 0 0.6em;
+}
+
+.prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+  margin: 0 0 22px;
+}
+
+.prose li {
+  margin: 0 0 4px;
+}
+
+.prose blockquote {
+  margin: 0 0 22px;
+  padding-left: 18px;
+  border-left: 3px solid var(--rule);
+  color: var(--gray);
+  font-style: italic;
+}
+
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: #f4f4f4;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 22px;
+  font-size: 0.9em;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--rule);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.prose thead {
+  background: #f7f7f7;
+}
+
+.prose pre {
+  background: #f7f7f7;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose iframe {
+  max-width: 100%;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.5em 0;
+}

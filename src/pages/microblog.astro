@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import { sortByDate } from "../lib/sortByDate";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+
+const posts = sortByDate(await getCollection("microblog"));
+const SITE_TITLE = "The Pragmatic Mentor";
+const base = import.meta.env.BASE_URL;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microblog · {SITE_TITLE}</title>
+  <style>
+    @import "../styles/global.css";
+
+    main{max-width:680px;margin:0 auto;padding:64px 24px 96px;}
+    .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+      color:var(--gray);margin:0 0 18px;}
+    h1{font-size:2.2rem;font-weight:800;letter-spacing:-.01em;margin:0 0 16px;}
+    .intro{margin:0 0 40px;}
+    .intro p{font-size:1.05rem;line-height:1.65;color:var(--gray);margin:0;}
+
+    ul{list-style:none;margin:0;padding:0;}
+    li{border-top:1px solid var(--rule);padding:24px 0;}
+    li:first-child{border-top:none;}
+    
+    .micro-post-content{font-size:1.05rem;line-height:1.65;color:var(--ink);margin:0 0 8px;}
+    .micro-post-content p{margin:0 0 12px;}
+    .micro-post-content p:last-child{margin-bottom:0;}
+    
+    a.title{font-size:18px;font-weight:700;color:var(--ink);text-decoration:none;
+      letter-spacing:-.005em;display:block;margin-bottom:8px;}
+    a.title:hover{text-decoration:underline;text-underline-offset:3px;}
+    p.meta{font-size:13px;color:var(--gray);margin:0;}
+    p.meta a{color:var(--gray);text-decoration:none;}
+    p.meta a:hover{color:var(--ink);text-decoration:underline;}
+  </style>
+</head>
+<body>
+  <Navigation />
+  <main>
+    <p class="eyebrow">Microblog</p>
+    <h1>Quick Thoughts</h1>
+    <div class="intro">
+      <p>Small updates, ideas, and observations that don't quite fit a full blog post.</p>
+    </div>
+    <ul>
+      {posts.map((post) => (
+        <li>
+          {post.data.title && (
+            <a class="title" href={`${base}microblog/${post.slug}/`}>{post.data.title}</a>
+          )}
+          <div class="micro-post-content" set:html={post.render()} />
+          <p class="meta">
+            <a href={`${base}microblog/${post.slug}/`}>{post.data.date}</a>
+          </p>
+        </li>
+      ))}
+    </ul>
+  </main>
+  <Footer showSocialLinks={true} />
+</body>
+</html>

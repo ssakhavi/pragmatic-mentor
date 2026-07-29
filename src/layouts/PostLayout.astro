@@ -1,5 +1,7 @@
 ---
 import { slugifyTag } from "../lib/slugify";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 
 interface Note {
   label: string;
@@ -34,7 +36,6 @@ interface Props {
 }
 const { title, date, tags, description, notes, outline, glossary = [] } = Astro.props;
 const sidebarNotes = notes.filter((n) => n.style !== "hover");
-const SITE_TITLE = "The Pragmatic Mentor";
 const base = import.meta.env.BASE_URL;
 const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cite", hl: "Note" };
 ---
@@ -45,24 +46,7 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <style is:global>
-    :root{
-      --ink:#141414; --gray:#6e6e6e; --rule:#e6e6e6; --bg:#ffffff;
-      --info:#1c5c8c; --warn:#b8720d; --cite:#555555; --hl:#8c1c1c;
-      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-      --mono:"SF Mono",Menlo,Consolas,monospace;
-    }
-    *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-      font-family:var(--sans);-webkit-font-smoothing:antialiased;}
-    a{color:inherit;}
-
-    .site-nav{border-bottom:1px solid var(--rule);}
-    .site-nav .inner{max-width:1180px;margin:0 auto;padding:20px 24px;
-      display:flex;align-items:center;justify-content:space-between;}
-    .wordmark{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-      text-decoration:none;color:var(--ink);}
-    .site-nav nav a{font-size:13px;color:var(--gray);text-decoration:none;margin-left:24px;}
-    .site-nav nav a:hover{color:var(--ink);}
+    @import "../styles/global.css";
 
     .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
       color:var(--gray);margin:0 0 18px;}
@@ -111,23 +95,9 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
       width:5px;height:5px;border-radius:50%;background:var(--ink);
       transform:translateY(-50%);}
 
-    .prose{font-size:17px;line-height:1.75;scroll-margin-top:32px;}
-    .prose p{margin:0 0 22px;}
-    .prose h2{font-size:1.3rem;font-weight:700;margin:2.2em 0 .7em;letter-spacing:-.005em;
-      scroll-margin-top:32px;}
-    .prose h3{font-size:1.05rem;font-weight:700;margin:1.8em 0 .6em;scroll-margin-top:32px;}
-    .prose a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;}
-    .prose ul,.prose ol{padding-left:1.3em;margin:0 0 22px;}
-    .prose blockquote{margin:0 0 22px;padding-left:18px;border-left:3px solid var(--rule);
-      color:var(--gray);font-style:italic;}
-    .prose code{font-family:var(--mono);font-size:.85em;background:#f4f4f4;
-      padding:.15em .4em;border-radius:3px;}
-    .prose pre{background:#f7f7f7;border:1px solid var(--rule);border-radius:6px;
-      padding:1em 1.2em;overflow-x:auto;}
-    .prose pre code{background:none;padding:0;}
-    .prose img{max-width:100%;height:auto;}
-    .prose iframe{max-width:100%;}
-    .prose hr{border:none;border-top:1px solid var(--rule);margin:2.5em 0;}
+    .prose{scroll-margin-top:32px;}
+    .prose h2{scroll-margin-top:32px;}
+    .prose h3{scroll-margin-top:32px;}
 
     mark{background:transparent;color:inherit;font-weight:600;cursor:pointer;
       transition:color .15s;}
@@ -190,26 +160,11 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
     .hover-card .hc-related a{font-size:12.5px;text-decoration:none;color:var(--ink);}
     .hover-card .hc-related a:hover{text-decoration:underline;}
     .hover-card .hc-related .hc-date{display:block;font-size:11px;color:var(--gray);}
-
-    footer{border-top:1px solid var(--rule);padding:28px 24px;}
-    footer .inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;
-      font-size:12.5px;color:var(--gray);}
-    footer a{color:var(--gray);text-decoration:none;}
-    footer a:hover{color:var(--ink);}
   </style>
 </head>
 <body>
-  <div class="site-nav" id="top">
-    <div class="inner">
-      <a class="wordmark" href={base}>{SITE_TITLE}</a>
-      <nav>
-        <a href={base}>Blog</a>
-        <a href={`${base}glossary/`}>Glossary</a>
-        <a href={`${base}tags/`}>Tags</a>
-        <a href={`${base}about/`}>About</a>
-        <a href={`${base}favorites/`}>Favorites</a>
-      </nav>
-    </div>
+  <div id="top">
+    <Navigation />
   </div>
   <div class="layout">
     <div class="header">
@@ -253,12 +208,7 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
       ))}
     </div>
   </div>
-  <footer>
-    <div class="inner">
-      <span>&copy; {new Date().getFullYear()}</span>
-      <a href="#top">Back to top</a>
-    </div>
-  </footer>
+  <Footer showBackLink={true} backLinkText="Back to top" backLinkHref="#top" />
   <script type="application/json" id="glossary-data" set:html={JSON.stringify(glossary)} />
   <script define:vars={{ base }}>
     // Sidebar-style notes: hover/click the highlighted phrase, the matching
@@ -285,6 +235,7 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
         const raw = document.getElementById("glossary-data")?.textContent;
         if (raw) glossaryData = JSON.parse(raw);
       } catch (e) {
+        console.warn("Failed to parse glossary data:", e);
         glossaryData = [];
       }
       const glossaryBySlug = Object.fromEntries(glossaryData.map((g) => [g.slug, g]));
@@ -301,7 +252,7 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
           card.classList.remove("visible");
           activeTarget?.classList.remove("active");
           activeTarget = null;
-        }, 150);
+        }, 150); // TODO: Use CSS variable when available in JS
       };
 
       const position = (target) => {
@@ -376,7 +327,7 @@ const noteTag: Record<string, string> = { info: "Info", warn: "Warn", cite: "Cit
       };
 
       const updateActiveOutline = () => {
-        const threshold = 96;
+        const threshold = 96; // TODO: Use CSS variable when available in JS
         let current = sections[0];
         for (const el of sections) {
           if (el.getBoundingClientRect().top - threshold <= 0) {

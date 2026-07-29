@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
+import { sortByDate } from "../../lib/sortByDate";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -20,16 +21,18 @@ let glossary = [];
 if (glossarySlugs.length > 0) {
   const allGlossary = await getCollection("glossary");
   const allPosts = await getCollection("blog");
+  const glossaryMap = new Map(allGlossary.map((g) => [g.slug, g]));
   glossary = glossarySlugs
-    .map((slug) => allGlossary.find((g) => g.slug === slug))
+    .map((slug) => glossaryMap.get(slug))
     .filter(Boolean)
     .map((entry) => {
       const relatedPosts = entry.data.tag
-        ? allPosts
-            .filter((p) => p.data.tags.includes(entry.data.tag) && p.slug !== post.slug)
-            .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf())
-            .slice(0, 4)
-            .map((p) => ({ title: p.data.title, slug: p.slug, date: p.data.date }))
+        ? sortByDate(
+            allPosts
+              .filter((p) => p.data.tags.includes(entry.data.tag) && p.slug !== post.slug)
+          )
+          .slice(0, 4)
+          .map((p) => ({ title: p.data.title, slug: p.slug, date: p.data.date }))
         : [];
       return {
         slug: entry.slug,

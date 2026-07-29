@@ -1,0 +1,50 @@
+---
+const base = import.meta.env.BASE_URL;
+const SITE_TITLE = "The Pragmatic Mentor";
+---
+<div class="site-nav">
+  <div class="inner">
+    <a class="wordmark" href={base}>{SITE_TITLE}</a>
+    <nav>
+      <a href={base}>Blog</a>
+      <a href={`${base}microblog/`}>Microblog</a>
+      <a href={`${base}glossary/`}>Glossary</a>
+      <a href={`${base}tags/`}>Tags</a>
+      <a href={`${base}about/`}>About</a>
+      <a href={`${base}favorites/`}>Favorites</a>
+    </nav>
+  </div>
+</div>
+<style>
+  .site-nav {
+    border-bottom: 1px solid var(--rule);
+  }
+  .site-nav .inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wordmark {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .site-nav nav a {
+    font-size: 13px;
+    color: var(--gray);
+    text-decoration: none;
+    margin-left: 24px;
+  }
+  .site-nav nav a:hover {
+    color: var(--ink);
+  }
+  .site-nav nav a.current {
+    color: var(--ink);
+  }
+</style>

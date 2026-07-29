@@ -1,10 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import { slugifyTag } from "../lib/slugify";
+import { sortByDate } from "../lib/sortByDate";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
-);
+const posts = sortByDate(await getCollection("blog"));
+const microPosts = sortByDate(await getCollection("microblog")).slice(0, 3);
 const SITE_TITLE = "The Pragmatic Mentor";
 const base = import.meta.env.BASE_URL;
 ---
@@ -15,22 +17,7 @@ const base = import.meta.env.BASE_URL;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{SITE_TITLE}</title>
   <style>
-    :root{
-      --ink:#141414; --gray:#6e6e6e; --rule:#e6e6e6; --bg:#ffffff;
-      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    }
-    *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-      font-family:var(--sans);-webkit-font-smoothing:antialiased;}
-    a{color:inherit;}
-
-    .site-nav{border-bottom:1px solid var(--rule);}
-    .site-nav .inner{max-width:1180px;margin:0 auto;padding:20px 24px;
-      display:flex;align-items:center;justify-content:space-between;}
-    .wordmark{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-      text-decoration:none;color:var(--ink);}
-    .site-nav nav a{font-size:13px;color:var(--gray);text-decoration:none;margin-left:24px;}
-    .site-nav nav a:hover{color:var(--ink);}
+    @import "../styles/global.css";
 
     main{max-width:680px;margin:0 auto;padding:64px 24px 96px;}
     .intro{margin:0 0 56px;}
@@ -56,26 +43,18 @@ const base = import.meta.env.BASE_URL;
     p.meta .tag-link{color:var(--gray);text-decoration:none;}
     p.meta .tag-link:hover{color:var(--ink);text-decoration:underline;}
 
-    footer{border-top:1px solid var(--rule);padding:28px 24px;}
-    footer .inner{max-width:1180px;margin:0 auto;font-size:12.5px;color:var(--gray);
-      display:flex;justify-content:space-between;}
-    footer a{color:var(--gray);text-decoration:none;}
-    footer a:hover{color:var(--ink);}
+    .micro-section{margin-top:48px;}
+    .micro-post{border-top:1px solid var(--rule);padding:16px 0;}
+    .micro-post:first-child{border-top:none;}
+    .micro-content{font-size:14px;line-height:1.6;color:var(--ink);margin:0 0 6px;}
+    .micro-content p{margin:0;}
+    .micro-date{font-size:12px;color:var(--gray);margin:0;}
+    .micro-date a{color:var(--gray);text-decoration:none;}
+    .micro-date a:hover{color:var(--ink);text-decoration:underline;}
   </style>
 </head>
 <body>
-  <div class="site-nav">
-    <div class="inner">
-      <a class="wordmark" href={base}>{SITE_TITLE}</a>
-      <nav>
-        <a href={base}>Blog</a>
-        <a href={`${base}glossary/`}>Glossary</a>
-        <a href={`${base}tags/`}>Tags</a>
-        <a href={`${base}about/`}>About</a>
-        <a href={`${base}favorites/`}>Favorites</a>
-      </nav>
-    </div>
-  </div>
+  <Navigation />
   <main>
     <div class="intro">
       <p class="eyebrow">Welcome</p>
@@ -87,6 +66,21 @@ const base = import.meta.env.BASE_URL;
         knowledge with others. Read more <a href={`${base}about/`}>about me</a>.
       </p>
     </div>
+    {microPosts.length > 0 && (
+      <>
+        <h2 class="section-title">Quick Thoughts</h2>
+        <div class="micro-section">
+          {microPosts.map((post) => (
+            <div class="micro-post">
+              <div class="micro-content" set:html={post.render()} />
+              <p class="micro-date">
+                <a href={`${base}microblog/${post.slug}/`}>{post.data.date}</a>
+              </p>
+            </div>
+          ))}
+        </div>
+      </>
+    )}
     <h2 class="section-title">Posts</h2>
     <ul>
       {posts.map((post) => (
@@ -105,15 +99,6 @@ const base = import.meta.env.BASE_URL;
       ))}
     </ul>
   </main>
-  <footer>
-    <div class="inner">
-      <span>&copy; {new Date().getFullYear()} Siavash Sakhavi</span>
-      <span>
-        <a href="https://www.github.com/ssakhavi">GitHub</a>
-        &nbsp;&middot;&nbsp;
-        <a href="https://www.linkedin.com/in/siavashsakhavi/">LinkedIn</a>
-      </span>
-    </div>
-  </footer>
+  <Footer showSocialLinks={true} />
 </body>
 </html>
